@@ -1,0 +1,47 @@
+<div class="container-fluid mt-3">
+  <p>Modulo de Administración</p>
+  <div class="d-flex justify-content-between py-3">      
+      <div class="h4">Administración de Cargos</div>
+      <div><a href="cargos" class="btn btn-primary">Volver</a></div>      
+  </div>
+
+  <div class="row">
+      <div class="card border-0 shadow-lg">
+          <div class="card-body">
+            <form class="row g-3" method="post" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                <div class="col-md-6">
+                  <label class="form-label">Codigo</label>
+                  <input type="text" class="form-control" formControlName="codigo" required>
+
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" class="form-control" formControlName="nombre" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Activo</label>
+                  <select class="form-select" formControlName="activo" required>
+                    <option value="1">SI</option>
+                    <option value="0">NO</option>
+                  </select>                  
+                </div>
+                <div class="col-md-3">
+                  <label for="validationServer04" class="form-label">Usuario</label>
+                  <select (change)="changeUsuarios($event)" class="form-control" formControlName="idUsuario">
+                    <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
+                      {{ item.primerNombre }}
+                    </option>
+                  </select>
+
+                  <!-- Selected Valud: {{ SelectedValue }} -->
+
+                </div>
+
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Guardar</button>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+</div>

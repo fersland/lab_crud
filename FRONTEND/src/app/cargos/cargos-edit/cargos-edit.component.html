@@ -1,0 +1,73 @@
+  <div class="d-flex justify-content-between py-3">
+      <div class="h4">Administración de Cargos / Editar</div>            
+      <div>          
+        <a routerLink="/cargos" class="btn btn-outline-primary">Volver</a>
+      </div>                    
+  </div>            
+  <div class="row">
+    <div class="col-md-12">
+      <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Correcto!</strong> Los datos fueron actualizados!
+  
+        <button (click)="closeAlert()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+  
+        </button>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body">
+          
+        <form class="row g-3" [formGroup]="formGroup" (ngSubmit)="updateData()">
+          <div class="modal-body">
+            <p>Los campos con (*) son obligatgorios.</p>
+            
+                <div class="col-md-12">
+                  <label class="form-label">Codigo</label>
+                  <input type="text" class="form-control" 
+                                formControlName="codigo" id="codigo"
+
+                                required >
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre"
+                                onkeydown="return /[a-z, ]/i.test(event.key)" 
+                                formControlName="nombre" 
+                                required >
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Activo</label>
+                  <select class="form-select"
+                          formControlName="activo" 
+                                required >
+                    <option value="1">SI</option>
+                    <option value="0">NO</option>
+                  </select>
+                  
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Departamento</label>
+    
+                  <select class="form-select" 
+                                formControlName="idDepartamento"
+                                (change)="changeUsuarios($event)" >
+                    <option [value]="item.id" *ngFor="let item of UsuariosList" [value]="item.id">
+                      {{ item.nombre }}
+                    </option>
+                  </select>
+    
+                  <!-- Selected Valud: {{ SelectedValue }} -->
+    
+                </div>
+    
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" type="submit">Actualizar</button>
+          </div>
+    
+        </form>
+      </div>
+  </div>
+    </div>
+</div>
