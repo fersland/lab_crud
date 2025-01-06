@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\DepartamentoController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,8 +34,13 @@ Route::put('departamentos-edit/{id}', 'App\Http\Controllers\DepartamentoControll
 Route::delete('departamentos/{id}', 'App\Http\Controllers\DepartamentoController@destroy');
 
 // USUARIOS
-Route::get('usuarios', [UsuarioController::class, 'index']);
-Route::get('usuarios/show/{id}', [UsuarioController::class, 'getUsuarioId']);
-Route::post('usuarios/store', [UsuarioController::class, 'store']);
-Route::put('usuarios-edit/{id}', [UsuarioController::class, 'update']);
-Route::delete('usuarios/{id}', 'App\Http\Controllers\UsuarioController@destroy');
+Route::get('usuarios', [UserController::class, 'index']);
+Route::get('usuarios/show/{id}', [UserController::class, 'getUsuarioId']);
+Route::post('usuarios/store', [UserController::class, 'store']);
+Route::put('usuarios-edit/{id}', [UserController::class, 'update']);
+Route::delete('usuarios-del/{id}', 'App\Http\Controllers\UserController@destroy');
+
+
+Route::get('/test-env', function () {
+    return env('TEST_VARIABLE', 'No se encuentra la variable');
+});

@@ -1,0 +1,44 @@
+<div class="space">
+    <p>Editar Usuario!</p>
+<form (submit)="actualizarUsuario()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input [formControl]="form.controls.usuario" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Primer Nombre</mat-label>
+        <input [formControl]="form.controls.primerNombre" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Segundo Nombre</mat-label>
+        <input [formControl]="form.controls.segundoNombre" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Primer Apellido</mat-label>
+        <input [formControl]="form.controls.primerApellido" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Segundo Apellido</mat-label>
+        <input [formControl]="form.controls.segundoApellido" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Departamento</mat-label>
+        <input [formControl]="form.controls.idDepartamento" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Cargo</mat-label>
+        <input [formControl]="form.controls.idCargo" matInput />
+    </mat-form-field>
+
+    <div>
+        <button type="submit" mat-flat-button>Guardar</button>
+        <button type="button" mat-stroked-button color="warn" (click)="cancelar()">Cancelar</button>
+    </div>
+</form>
+</div>

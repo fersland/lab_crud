@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\User;
+
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function index()
+{
+    $users = User::join('cargos', 'cargos.id', '=', 'users.idCargo')
+        ->join('departamentos', 'departamentos.id', '=', 'users.idDepartamento')
+        ->get([
+            'users.*', 
+            'cargos.nombre as car', 
+            'departamentos.nombre as dep'
+        ]);
+
+    if ($users->isEmpty()) {
+        return response()->json(['message' => 'No users found.'], 404);
+    }
+
+    return response()->json($users);
+}
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'usuario' => 'required',
+            'primerNombre' => 'required',
+            'segundoNombre' => 'required',
+            'primerApellido' => 'required',
+            'segundoApellido' => 'required',
+            'idDepartamento' => 'required',
+            'idCargo' => 'required',            
+        ]);
+
+        User::create($request->post());
+        return response()->json([
+            'message' => 'Added Usuario!'
+        ]);
+    }
+
+    public function getUsuarioId($id)
+    {
+        $usuario = User::find($id);
+        if(is_null($usuario)) {
+            return response()->json(['message' => 'Usuario no encontrado', 404]);
+        }
+
+        return response()->json($usuario::find($id), 200);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $usuario = User::findOrFail($request->id);
+
+        $usuario->usuario = $request->usuario;
+        $usuario->primerNombre = $request->primerNombre;
+        $usuario->segundoNombre = $request->segundoNombre;
+        $usuario->primerApellido = $request->primerApellido;
+        $usuario->segundoApellido = $request->segundoApellido;
+        $usuario->idDepartamento =  $request->idDepartamento;
+        $usuario->idCargo = $request->idCargo;
+        $usuario->save();
+        return $usuario;
+    }
+
+    public function destroy (Request $request, string $id)
+    {
+        $usuarios = User::destroy($id);
+        return response()->json($usuarios);
+    }
+}
