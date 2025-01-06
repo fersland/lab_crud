@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('codigo', 30);
             $table->string('nombre', 100);
             $table->boolean('activo');
+            $table->bigInteger('idUsuarioCreacion');
             $table->timestamps();
         });
     }
