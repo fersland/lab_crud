@@ -1,44 +1,54 @@
 <div class="space">
-    <p>Editar Usuario!</p>
-<form (submit)="actualizarUsuario()" [formGroup]="form">
-    <mat-form-field appearance="outline">
-        <mat-label>Usuario</mat-label>
-        <input [formControl]="form.controls.usuario" matInput />
-    </mat-form-field>
+    <p>Editar Usuario</p>
+    <form (submit)="actualizarUsuario()" [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Usuario</mat-label>
+            <input [formControl]="form.controls.usuario" matInput />
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Primer Nombre</mat-label>
-        <input [formControl]="form.controls.primerNombre" matInput />
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Primer Nombre</mat-label>
+            <input [formControl]="form.controls.primerNombre" matInput />
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Segundo Nombre</mat-label>
-        <input [formControl]="form.controls.segundoNombre" matInput />
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Segundo Nombre</mat-label>
+            <input [formControl]="form.controls.segundoNombre" matInput />
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Primer Apellido</mat-label>
-        <input [formControl]="form.controls.primerApellido" matInput />
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Primer Apellido</mat-label>
+            <input [formControl]="form.controls.primerApellido" matInput />
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Segundo Apellido</mat-label>
-        <input [formControl]="form.controls.segundoApellido" matInput />
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Segundo Apellido</mat-label>
+            <input [formControl]="form.controls.segundoApellido" matInput />
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-        <mat-label>Departamento</mat-label>
-        <input [formControl]="form.controls.idDepartamento" matInput />
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Departamento</mat-label>
+            <mat-select [formControl]="form.controls.idDepartamento">
+              <mat-option *ngFor="let depa of departamentos" [value]="depa.id">
+                {{ depa.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Cargo</mat-label>
+            <mat-select [formControl]="form.controls.idCargo">
+              <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
+                {{ cargo.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          
 
-    <mat-form-field appearance="outline">
-        <mat-label>Cargo</mat-label>
-        <input [formControl]="form.controls.idCargo" matInput />
-    </mat-form-field>
-
-    <div>
-        <button type="submit" mat-flat-button>Guardar</button>
-        <button type="button" mat-stroked-button color="warn" (click)="cancelar()">Cancelar</button>
-    </div>
-</form>
+        <div>
+            <button type="submit" mat-flat-button>Guardar</button>
+            <button type="button" mat-stroked-button color="warn" (click)="cancelar()">Cancelar</button>
+        </div>
+    </form>
 </div>

@@ -68,13 +68,13 @@ export class AddUsuarioComponent {
       };
   
       this.usuarioService.addUsuarios(user).subscribe(() => {
-        this.dialogRef.close(true); // Indica éxito y cierra el modal
-        this.form.reset(); // Limpia el formulario tras un registro exitoso
+        this.dialogRef.close(true); 
+        this.form.reset();
       });
     }
   }
   
   cancelar() {
-    this.dialogRef.close(false); // Cierra el modal sin realizar ninguna acción
+    this.dialogRef.close(false);
   }
 }
