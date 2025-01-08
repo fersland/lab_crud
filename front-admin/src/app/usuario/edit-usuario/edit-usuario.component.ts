@@ -68,9 +68,9 @@ export class EditUsuarioComponent implements OnInit {
   cargarUsuario() {
     this.usuarioService.obtenerUsuarioPorId(this.id).subscribe((user) => {
       if (user) {
-        console.log('Usuario recibido:', user); // Verifica la respuesta completa
-      console.log('Departamento ID:', user.idDepartamento); // Verifica el idDepartamento
-      console.log('Cargo ID:', user.idCargo); // Verifica el idCargo
+        console.log('Usuario recibido:', user);
+      console.log('Departamento ID:', user.idDepartamento);
+      console.log('Cargo ID:', user.idCargo);
 
         this.form.patchValue({
           usuario: user.usuario,
@@ -103,7 +103,7 @@ export class EditUsuarioComponent implements OnInit {
         this.dialogRef.close(true);
       });
     } else {
-      console.log("Formulario no válido", this.form); // Aquí se imprimen los detalles del formulario para revisar qué está mal
+      console.log("Formulario no válido", this.form);
     }
   }
 

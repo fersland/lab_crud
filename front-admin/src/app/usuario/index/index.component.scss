@@ -67,38 +67,34 @@ a{
     text-align: center !important;
   }
 
-  /* Cambiar el color de fondo de la tabla a un blanco pálido */
 .mat-table {
-  background-color: #f9f9f9; /* Color de fondo blanco pálido */
-  font-size: 12px; /* Tamaño de fuente 12px */
-  width: 100%; /* Asegurarse de que la tabla ocupe el 100% del ancho */
-  border-collapse: collapse; /* Colapsar bordes */
+  background-color: #f9f9f9;
+  font-size: 12px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-/* Estilos de las celdas de la tabla */
+
 .mat-header-cell, .mat-cell {
-  padding: 12px; /* Espaciado interno */
-  text-align: left; /* Alinear texto a la izquierda */
-  border-bottom: 1px solid #ddd; /* Borde inferior para las filas */
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Estilo para el encabezado */
 .mat-header-cell {
-  background-color: #e0e0e0; /* Fondo gris suave para los encabezados */
+  background-color: #e0e0e0;
   font-weight: bold;
 }
 
-/* Estilo para el hover sobre las filas */
+
 .mat-row:hover {
-  background-color: #e0f7fa; /* Efecto de hover celeste */
+  background-color: #e0f7fa;
 }
 
-/* Si es necesario hacer la fila seleccionable, por ejemplo */
 .mat-row.selected {
-  background-color: #b3e5fc; /* Color de selección */
+  background-color: #b3e5fc;
 }
 
-/* Estilo para las celdas de las acciones (si tienen botones) */
 .mat-cell button {
   margin: 5px;
   display: inline-block;
