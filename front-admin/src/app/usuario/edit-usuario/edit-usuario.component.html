@@ -1,54 +1,93 @@
 <div class="space">
+  <div class="header">
     <p>Editar Usuario</p>
-    <form (submit)="actualizarUsuario()" [formGroup]="form">
-        <mat-form-field appearance="outline">
-            <mat-label>Usuario</mat-label>
-            <input [formControl]="form.controls.usuario" matInput />
-        </mat-form-field>
+    <button class="close-btn" (click)="cancelar()" style="float: right;margin-top: -40px;background: white;border: 0;">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <hr />
 
-        <mat-form-field appearance="outline">
-            <mat-label>Primer Nombre</mat-label>
-            <input [formControl]="form.controls.primerNombre" matInput />
-        </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Segundo Nombre</mat-label>
-            <input [formControl]="form.controls.segundoNombre" matInput />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Primer Apellido</mat-label>
-            <input [formControl]="form.controls.primerApellido" matInput />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Segundo Apellido</mat-label>
-            <input [formControl]="form.controls.segundoApellido" matInput />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Departamento</mat-label>
-            <mat-select [formControl]="form.controls.idDepartamento">
-              <mat-option *ngFor="let depa of departamentos" [value]="depa.id">
-                {{ depa.nombre }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          
-          <mat-form-field appearance="outline">
-            <mat-label>Cargo</mat-label>
-            <mat-select [formControl]="form.controls.idCargo">
-              <mat-option *ngFor="let cargo of cargos" [value]="cargo.id">
-                {{ cargo.nombre }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          
-          
-
-        <div>
-            <button type="submit" mat-flat-button>Guardar</button>
-            <button type="button" mat-stroked-button color="warn" (click)="cancelar()">Cancelar</button>
+    <form (submit)="actualizarUsuario()" [formGroup]="form" class="form-container">
+      <div class="form-row">
+        <div class="form-field">
+          <mat-label>Departamento</mat-label>
+          <select [formControl]="form.controls.idDepartamento">
+            <option *ngFor="let depa of departamentos" [value]="depa.id">
+              {{ depa.nombre }}
+            </option>
+          </select>
+          <div *ngIf="form.controls.idDepartamento.invalid && form.controls.idDepartamento.touched" class="error">
+            El departamento es obligatorio.
+          </div>
         </div>
+      
+        <div class="form-field">
+          <mat-label>Cargo</mat-label>
+          <select [formControl]="form.controls.idCargo">
+            <option *ngFor="let cargo of cargos" [value]="cargo.id">
+              {{ cargo.nombre }}
+            </option>
+          </select>
+          <div *ngIf="form.controls.idCargo.invalid && form.controls.idCargo.touched" class="error">
+            El cargo es obligatorio.
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row ">
+        <div class="form-field full-width">
+          <mat-label>Usuario</mat-label>
+          <input [formControl]="form.controls.usuario" matInput />
+          <div *ngIf="form.controls.usuario.invalid && form.controls.usuario.touched" class="error">
+            El campo usuario es obligatorio y debe contener solo letras y números, sin espacios.
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-field">
+          <mat-label>Primer Nombre</mat-label>
+          <input [formControl]="form.controls.primerNombre" matInput />
+          <div *ngIf="form.controls.primerNombre.invalid && form.controls.primerNombre.touched" class="error">
+            El primer nombre es obligatorio y solo puede contener letras y espacios.
+          </div>
+        </div>
+      
+        <div class="form-field">
+          <mat-label>Segundo Nombre</mat-label>
+          <input [formControl]="form.controls.segundoNombre" matInput />
+          <div *ngIf="form.controls.segundoNombre.invalid && form.controls.segundoNombre.touched" class="error">
+            El segundo nombre solo puede contener letras y espacios.
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-field">
+          <mat-label>Primer Apellido</mat-label>
+          <input [formControl]="form.controls.primerApellido" matInput />
+          <div *ngIf="form.controls.primerApellido.invalid && form.controls.primerApellido.touched" class="error">
+            El primer apellido es obligatorio y solo puede contener letras y espacios.
+          </div>
+        </div>
+      
+        <div class="form-field">
+          <mat-label>Segundo Apellido</mat-label>
+          <input [formControl]="form.controls.segundoApellido" matInput />
+          <div *ngIf="form.controls.segundoApellido.invalid && form.controls.segundoApellido.touched" class="error">
+            El segundo apellido solo puede contener letras y espacios.
+          </div>
+        </div>
+      </div>      
+      
+        
+      <div class="form-actions right-aligned">
+        
+            <button type="submit" mat-flat-button color="primary" [disabled]="form.invalid">Actualizar</button>
+            <button type="button" mat-stroked-button color="default" (click)="cancelar()" >Cancelar</button>
+        </div>
+
     </form>
+
 </div>

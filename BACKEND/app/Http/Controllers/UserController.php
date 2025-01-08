@@ -4,42 +4,66 @@ namespace App\Http\Controllers;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
     public function index()
-{
-    $users = User::join('cargos', 'cargos.id', '=', 'users.idCargo')
-        ->join('departamentos', 'departamentos.id', '=', 'users.idDepartamento')
-        ->get([
-            'users.*', 
-            'cargos.nombre as car', 
-            'departamentos.nombre as dep'
-        ]);
+    {
+        $users = User::join('cargos', 'cargos.id', '=', 'users.idCargo')
+            ->join('departamentos', 'departamentos.id', '=', 'users.idDepartamento')
+            ->select('users.*', 'cargos.nombre as car', 'departamentos.nombre as dep')
+            ->get();
 
-    if ($users->isEmpty()) {
-        return response()->json(['message' => 'No users found.'], 404);
+        if ($users->isEmpty()) {
+            return response()->json(['message' => 'No users found.'], 404);
+        }
+
+        return response()->json($users);
     }
 
-    return response()->json($users);
-}
+    public function obtenerUsuariosPorDepartamento($departamentoId)
+    {
+        $usuarios = User::join('cargos', 'cargos.id', '=', 'users.idCargo')
+                        ->join('departamentos', 'departamentos.id', '=', 'users.idDepartamento')
+                        ->where('users.idDepartamento', $departamentoId)
+                        ->get([
+                            'users.*',
+                            'departamentos.nombre as dep', 
+                            'cargos.nombre as car'
+                        ]);
+        return response()->json($usuarios);
+    }
 
+    public function obtenerUsuariosPorCargo($cargoId)
+    {
+        $usuarios = User::join('cargos', 'cargos.id', '=', 'users.idCargo')
+                        ->join('departamentos', 'departamentos.id', '=', 'users.idDepartamento')
+                        ->where('users.idCargo', $cargoId)
+                        ->get([
+                            'users.*',
+                            'departamentos.nombre as dep', 
+                            'cargos.nombre as car'
+                        ]);
+        return response()->json($usuarios);
+    }
 
     public function store(Request $request)
     {
         $request->validate([
             'usuario' => 'required',
             'primerNombre' => 'required',
-            'segundoNombre' => 'required',
+            'segundoNombre' => '',
             'primerApellido' => 'required',
-            'segundoApellido' => 'required',
+            'segundoApellido' => '',
             'idDepartamento' => 'required',
             'idCargo' => 'required',            
         ]);
 
         User::create($request->post());
         return response()->json([
-            'message' => 'Added Usuario!'
+            'message' => 'Usuario registrado correctamente!'
         ]);
     }
 

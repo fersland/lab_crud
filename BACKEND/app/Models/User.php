@@ -21,6 +21,14 @@ class User extends Model
         'idCargo'
     ];
 
+    // En el modelo User.php
+
+    public function getNombresAttribute()
+    {
+        return $this->primerNombre . ' ' . $this->segundoNombre;
+    }
+
+
     /**
      * Get all of the comments for the Usuario
      *

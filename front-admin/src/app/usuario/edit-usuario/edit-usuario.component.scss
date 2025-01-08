@@ -1,25 +1,61 @@
-// Contenedor principal del formulario
-.form-container {
-    display: column;
-    flex-direction: column; // Coloca los elementos en columna
-    gap: 16px; // Espaciado entre los elementos del formulario
-    max-width: 500px; // Ancho máximo del formulario
-    margin: 0 auto; // Centra el formulario horizontalmente
-    padding: 16px; // Añade un padding interno
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); // Sombra ligera
-    border-radius: 8px; // Bordes redondeados
-    background-color: #fff; // Fondo blanco para resaltar el formulario
-  }
-  
-  // Ajustes específicos para los campos del formulario
-  mat-form-field {
-    width: 100%; // Asegura que los campos ocupen todo el ancho disponible
-  }
-  
-  // Estilo para la sección de acciones (botones)
-  .form-actions {
-    display: flex;
-    justify-content: space-between; // Alinea los botones a los extremos
-    gap: 8px; // Espaciado entre los botones
-  }
-  
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 0px;
+}
+
+.form-field {
+  flex: 0 0 calc(45% - 16px);
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  margin-bottom: 24px;
+}
+
+
+.full-width {
+  flex: 0 0 100%;
+}
+
+
+mat-label {
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+input,
+select {
+  width: 95%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+input:focus,
+select:focus {
+  border-color: #3f51b5;
+  outline: none;
+}
+
+input::placeholder,
+select::placeholder {
+  color: #888;
+}
+
+.form-actions button {
+  margin-right: 16px; 
+}
+
+.form-actions button:last-child {
+  margin-right: 0;
+}
+
+.form-actions.right-aligned {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

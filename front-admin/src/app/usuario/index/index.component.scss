@@ -6,3 +6,104 @@ a{
     margin-top: 1rem;
 }
 
+.filters-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 7px;
+  }
+  
+  .department-filter {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  button {
+    margin-top:-15px;
+    align-self: center;
+  }
+  
+
+.condensed-select .mat-select-trigger {
+    padding: 4px 2px;
+    font-size: 12px;
+    background-color: lightgray !important;
+    height: 22px;
+  }
+  
+  ::ng-deep .mat-select-panel {
+    background-color: lightgray !important;
+  }
+  
+  ::ng-deep .mat-option {
+    font-size: 12px;
+    padding: 6px 6px;
+  }
+
+  .condensed-select {
+    min-width: 200px;
+    border-top:1px solid gray;
+    
+  }
+  
+  select {
+    width: 95%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  select:focus {
+    border-color: #3f51b5;
+    outline: none;
+  }
+  select::placeholder {
+    color: #888;
+  }
+
+  .centered-header {
+    text-align: center !important;
+  }
+
+  /* Cambiar el color de fondo de la tabla a un blanco pálido */
+.mat-table {
+  background-color: #f9f9f9; /* Color de fondo blanco pálido */
+  font-size: 12px; /* Tamaño de fuente 12px */
+  width: 100%; /* Asegurarse de que la tabla ocupe el 100% del ancho */
+  border-collapse: collapse; /* Colapsar bordes */
+}
+
+/* Estilos de las celdas de la tabla */
+.mat-header-cell, .mat-cell {
+  padding: 12px; /* Espaciado interno */
+  text-align: left; /* Alinear texto a la izquierda */
+  border-bottom: 1px solid #ddd; /* Borde inferior para las filas */
+}
+
+/* Estilo para el encabezado */
+.mat-header-cell {
+  background-color: #e0e0e0; /* Fondo gris suave para los encabezados */
+  font-weight: bold;
+}
+
+/* Estilo para el hover sobre las filas */
+.mat-row:hover {
+  background-color: #e0f7fa; /* Efecto de hover celeste */
+}
+
+/* Si es necesario hacer la fila seleccionable, por ejemplo */
+.mat-row.selected {
+  background-color: #b3e5fc; /* Color de selección */
+}
+
+/* Estilo para las celdas de las acciones (si tienen botones) */
+.mat-cell button {
+  margin: 5px;
+  display: inline-block;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}

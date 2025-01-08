@@ -1,6 +1,6 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,11 +8,19 @@ import { UsuarioAdd } from '../usuario.models';
 import { UsuarioService } from '../usuario.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-edit-usuario',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, CommonModule],
+  imports: [
+    ReactiveFormsModule, 
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    CommonModule,
+    MatIconModule],
   templateUrl: './edit-usuario.component.html',
   styleUrls: ['./edit-usuario.component.scss'],
 })
@@ -26,11 +34,11 @@ export class EditUsuarioComponent implements OnInit {
   id: number;
 
   form = this._fbuilder.group({
-    usuario: [''],
-    primerNombre: [''],
-    segundoNombre: [''],
-    primerApellido: [''],
-    segundoApellido: [''],
+    usuario: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')]],
+    primerNombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+    segundoNombre: ['', [Validators.pattern('^[a-zA-Z ]+$')]],
+    primerApellido: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+    segundoApellido: ['', [Validators.pattern('^[a-zA-Z ]+$')]],
     idDepartamento: [''],
     idCargo: [''],
   });
@@ -45,7 +53,6 @@ export class EditUsuarioComponent implements OnInit {
   }
   
   cargarDatos() {
-    // Cargar departamentos y cargos en paralelo
     const departamentos$ = this.usuarioService.obtenerDepartamentos();
     const cargos$ = this.usuarioService.obtenerCargos();
   
@@ -53,9 +60,6 @@ export class EditUsuarioComponent implements OnInit {
       ([departamentos, cargos]) => {
         this.cargos = cargos!;
         this.departamentos = departamentos!;
-
-  
-        // Una vez cargadas las listas, carga los datos del usuario
         this.cargarUsuario();
       }
     );
@@ -64,14 +68,18 @@ export class EditUsuarioComponent implements OnInit {
   cargarUsuario() {
     this.usuarioService.obtenerUsuarioPorId(this.id).subscribe((user) => {
       if (user) {
+        console.log('Usuario recibido:', user); // Verifica la respuesta completa
+      console.log('Departamento ID:', user.idDepartamento); // Verifica el idDepartamento
+      console.log('Cargo ID:', user.idCargo); // Verifica el idCargo
+
         this.form.patchValue({
           usuario: user.usuario,
           primerNombre: user.primerNombre,
           segundoNombre: user.segundoNombre,
           primerApellido: user.primerApellido,
           segundoApellido: user.segundoApellido,
-          idDepartamento: user.idDepartamento, // Valor preseleccionado
-          idCargo: user.idCargo, // Valor preseleccionado
+          idDepartamento: user.idDepartamento,
+          idCargo: user.idCargo,
         });
       }
     });
@@ -79,20 +87,24 @@ export class EditUsuarioComponent implements OnInit {
   
 
   actualizarUsuario() {
-    const formValue = this.form.value;
-    const user: UsuarioAdd = {
-      usuario: formValue.usuario!,
-      primerNombre: formValue.primerNombre!,
-      segundoNombre: formValue.segundoNombre!,
-      primerApellido: formValue.primerApellido!,
-      segundoApellido: formValue.segundoApellido!,
-      idDepartamento: formValue.idDepartamento!,
-      idCargo: formValue.idCargo!,
-    };
+    if (this.form.valid) {
+      const formValue = this.form.value;
+      const user: UsuarioAdd = {
+        usuario: formValue.usuario!,
+        primerNombre: formValue.primerNombre!,
+        segundoNombre: formValue.segundoNombre!,
+        primerApellido: formValue.primerApellido!,
+        segundoApellido: formValue.segundoApellido!,
+        idDepartamento: formValue.idDepartamento!,
+        idCargo: formValue.idCargo!,
+      };
 
-    this.usuarioService.actualizarUsuario(this.id, user).subscribe(() => {
-      this.dialogRef.close(true);
-    });
+      this.usuarioService.actualizarUsuario(this.id, user).subscribe(() => {
+        this.dialogRef.close(true);
+      });
+    } else {
+      console.log("Formulario no válido", this.form); // Aquí se imprimen los detalles del formulario para revisar qué está mal
+    }
   }
 
   cancelar() {

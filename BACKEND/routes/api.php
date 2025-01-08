@@ -39,6 +39,8 @@ Route::get('usuarios/show/{id}', [UserController::class, 'getUsuarioId']);
 Route::post('usuarios/store', [UserController::class, 'store']);
 Route::put('usuarios-edit/{id}', [UserController::class, 'update']);
 Route::delete('usuarios-del/{id}', 'App\Http\Controllers\UserController@destroy');
+route::get('usuarios/sdepartamentos/{id}', [UserController::class, 'obtenerUsuariosPorDepartamento']);
+route::get('usuarios/scargos/{id}', [UserController::class, 'obtenerUsuariosPorCargo']);
 
 
 Route::get('/test-env', function () {

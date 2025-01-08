@@ -42,6 +42,14 @@ export class UsuarioService {
 
   public eliminarUsuario(id: number): Observable<any> {
     return this._http.delete(`${this._url}/usuarios-del/${id}`);
-  }  
+  }
+
+  obtenerUsuariosPorDepartamento(departamentoId: string): Observable<any[]> {
+    return this._http.get<any[]>(`${this._url}/usuarios/sdepartamentos/${departamentoId}`);
+  }
+
+  obtenerUsuariosPorCargo(cargoId: string): Observable<any[]> {
+    return this._http.get<any[]>(`${this._url}/usuarios/scargos/${cargoId}`);
+  }
   
 }
