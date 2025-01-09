@@ -38,6 +38,7 @@ GO
 CREATE TABLE [dbo].[users](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[usuario] [nvarchar](50) NOT NULL,
+	[email] [nvarchar](80) NOT NULL,
 	[primerNombre] [nvarchar](50) NOT NULL,
 	[segundoNombre] [nvarchar](50) NULL,
 	[primerApellido] [nvarchar](50) NOT NULL,
@@ -76,5 +77,5 @@ INSERT INTO [dbo].[departamentos] (codigo, nombre, activo, idUsuarioCreacion) VA
 	('DD002', 'DOCUMENTOS', 1, 1),
 	('DD003', 'SEGURIDAD', 1, 1)
 
-INSERT INTO [dbo].[users] ([usuario], [primerNombre], [segundoNombre], [primerApellido], [segundoApellido], [idDepartamento], [idCargo])
-	VALUES ('devfreyes', 'Fernando', 'Dionicio', 'Reyes', 'Noboa', 1, 1)
+INSERT INTO [dbo].[users] ([usuario], [email] [primerNombre], [segundoNombre], [primerApellido], [segundoApellido], [idDepartamento], [idCargo])
+	VALUES ('devfreyes', 'devfreyes@outlook.com', 'Fernando', 'Dionicio', 'Reyes', 'Noboa', 1, 1)
