@@ -1,4 +1,4 @@
-CREATE DATABASE prueba
+
 USE prueba
 GO
 

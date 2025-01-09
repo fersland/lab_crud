@@ -35,12 +35,13 @@ export class AddUsuarioComponent {
 
   form = this._fbuilder.group({
     usuario: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')]],
-    primerNombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-    segundoNombre: ['', [Validators.pattern('^[a-zA-Z ]+$')]],
-    primerApellido: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-    segundoApellido: ['', [Validators.pattern('^[a-zA-Z ]+$')]],
-    idDepartamento: [''],
-    idCargo: ['']
+    email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+    primerNombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+    segundoNombre: ['', [Validators.pattern('^[a-zA-Z]+$')]],
+    primerApellido: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+    segundoApellido: ['', [Validators.pattern('^[a-zA-Z]+$')]],
+    idDepartamento: ['', [Validators.required]],
+    idCargo: ['', [Validators.required]]
   })
 
   formVisible: boolean = true;
@@ -67,6 +68,7 @@ export class AddUsuarioComponent {
       const formValue = this.form.value;
       const user: UsuarioAdd = {
         usuario: formValue.usuario!,
+        email: formValue.email!,
         primerNombre: formValue.primerNombre!,
         segundoNombre: formValue.segundoNombre!,
         primerApellido: formValue.primerApellido!,

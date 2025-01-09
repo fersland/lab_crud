@@ -1,5 +1,6 @@
 export interface UsuarioAdd{
     usuario: string;
+    email: string;
     primerNombre: string;
     segundoNombre: string;
     primerApellido: string;
@@ -12,6 +13,7 @@ export interface UsuarioAdd{
 export interface Usuario{
     id:number;
     usuario: string;
+    email: string;
     primerNombre: string;
     segundoNombre: string;
     primerApellido: string;

@@ -35,6 +35,7 @@ export class EditUsuarioComponent implements OnInit {
 
   form = this._fbuilder.group({
     usuario: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')]],
+    email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
     primerNombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
     segundoNombre: ['', [Validators.pattern('^[a-zA-Z ]+$')]],
     primerApellido: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
@@ -74,6 +75,7 @@ export class EditUsuarioComponent implements OnInit {
 
         this.form.patchValue({
           usuario: user.usuario,
+          email: user.email,
           primerNombre: user.primerNombre,
           segundoNombre: user.segundoNombre,
           primerApellido: user.primerApellido,
@@ -91,6 +93,7 @@ export class EditUsuarioComponent implements OnInit {
       const formValue = this.form.value;
       const user: UsuarioAdd = {
         usuario: formValue.usuario!,
+        email: formValue.email!,
         primerNombre: formValue.primerNombre!,
         segundoNombre: formValue.segundoNombre!,
         primerApellido: formValue.primerApellido!,

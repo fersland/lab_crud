@@ -53,6 +53,7 @@ class UserController extends Controller
     {
         $request->validate([
             'usuario' => 'required',
+            'email' => 'required',
             'primerNombre' => 'required',
             'segundoNombre' => '',
             'primerApellido' => 'required',
@@ -82,6 +83,7 @@ class UserController extends Controller
         $usuario = User::findOrFail($request->id);
 
         $usuario->usuario = $request->usuario;
+        $usuario->email = $request->email;
         $usuario->primerNombre = $request->primerNombre;
         $usuario->segundoNombre = $request->segundoNombre;
         $usuario->primerApellido = $request->primerApellido;

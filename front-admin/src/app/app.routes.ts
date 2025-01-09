@@ -6,7 +6,5 @@ import { EditUsuarioComponent } from './usuario/edit-usuario/edit-usuario.compon
 
 export const routes: Routes = [
     
-    {path: 'usuario', component: IndexComponent},
-    {path: 'usuario/add-usuario', component: AddUsuarioComponent},
-    {path: 'usuario/edit-usuario/:id', component: EditUsuarioComponent}
+    {path: '', component: IndexComponent}
 ];

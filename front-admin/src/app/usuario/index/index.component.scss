@@ -11,6 +11,7 @@ a{
     justify-content: space-between;
     align-items: center;
     gap: 7px;
+
   }
   
   .department-filter {
@@ -102,4 +103,29 @@ a{
 
 tr.example-element-row:not(.example-expanded-row):hover {
   background: whitesmoke;
+}
+
+.dale{
+  margin-top: 30px;
+  padding: 17px;
+  background: #fff;
+}
+
+.hrr{
+  margin-top: 20px;
+}
+.contador-registros {
+  background: #f5f5f5;
+  height: 50px;              
+  font-weight: bold;         
+  display: flex;             
+  justify-content: flex-start; 
+  align-items: center;       
+  padding-left: 10px;        
+  font-size: 14px;           
+  color: #333;              
+}
+
+.center-header {
+  text-align: center;
 }

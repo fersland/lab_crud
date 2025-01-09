@@ -41,7 +41,7 @@ export class IndexComponent {
   cargos: any[] = [];
   selectedDepartment: string = '';
   selectedCargo: string = '';
-  columnasAMostrar = ["usuario", "nombres", "apellidos",  "idDepartamento", "idCargo", "acciones"]
+  columnasAMostrar = ["usuario", "nombres", "apellidos",  "idDepartamento", "idCargo", "email", "acciones"]
 
   constructor() {
     this.cargarUsuarios();
