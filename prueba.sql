@@ -77,5 +77,5 @@ INSERT INTO [dbo].[departamentos] (codigo, nombre, activo, idUsuarioCreacion) VA
 	('DD002', 'DOCUMENTOS', 1, 1),
 	('DD003', 'SEGURIDAD', 1, 1)
 
-INSERT INTO [dbo].[users] ([usuario], [email] [primerNombre], [segundoNombre], [primerApellido], [segundoApellido], [idDepartamento], [idCargo])
+INSERT INTO [dbo].[users] ([usuario], [email], [primerNombre], [segundoNombre], [primerApellido], [segundoApellido], [idDepartamento], [idCargo])
 	VALUES ('devfreyes', 'devfreyes@outlook.com', 'Fernando', 'Dionicio', 'Reyes', 'Noboa', 1, 1)
